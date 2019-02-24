@@ -26,7 +26,8 @@ class Client:
         }
         return self._request('GET', 'validate', payload)
 
-    def score(self):
+    def score(self, username=None):
+        username = username if username else self.username
         payload = {
             'server_code': self.server_code
         }

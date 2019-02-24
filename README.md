@@ -1,16 +1,19 @@
 # htc-api
 
-Hack The Classroom game server API.
+Hack The Classroom game server API used by the client for web requests.
 
-## Notes
+## How do?
 
-- basic requests api client
-
-## Staging
+```
+pip install htc_api
+```
 
 ```python
 from htc_api import Client
 
-client = Client('vesche', 'acX2rUvbX')
-client.solve('level_id', 'flag')
+client = Client('Bob', '069420')
+
+if client.validate()['success']:
+    client.solve('test', 'testflag')
+    print(client.score())
 ```

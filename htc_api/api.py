@@ -20,25 +20,23 @@ class Client:
         response.raise_for_status()
         return response.json()
 
-    def validate(self, server_code=None):
-        server_code = self.server_code if not server_code else server_code
+    def validate(self):
         payload = {
             'server_code': self.server_code
         }
         return self._request('GET', 'validate', payload)
 
-    def score(self, username=None):
-        username = self.username if not username else username
+    def score(self):
         payload = {
             'server_code': self.server_code
         }
-        return self._request('GET', 'score/' + username, payload)
+        return self._request('GET', 'score/' + self.username, payload)
 
-    def solve(self, level_id, flag, username, server_code):
+    def solve(self, level_id, flag):
         payload = {
             'level_id': level_id,
             'flag': flag,
-            'username': username,
-            'server_code': server_code
+            'username': self.username,
+            'server_code': self.server_code
         }
         return self._request('GET', 'solve', payload)

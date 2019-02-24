@@ -29,11 +29,16 @@ class Client:
 
     def score(self, username=None):
         username = self.username if not username else username
-        return self._request('GET', 'score/' + username)
+        payload = {
+            'server_code': self.server_code
+        }
+        return self._request('GET', 'score/' + username, payload)
 
-    def solve(self, level_id, flag):
+    def solve(self, level_id, flag, username, server_code):
         payload = {
             'level_id': level_id,
-            'flag': flag
+            'flag': flag,
+            'username': username,
+            'server_code': server_code
         }
         return self._request('GET', 'solve', payload)
